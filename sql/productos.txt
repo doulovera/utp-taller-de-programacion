@@ -1,0 +1,41 @@
+CREATE TABLE productos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    brand VARCHAR(255) NOT NULL,
+    image VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    discount DECIMAL(5, 2) DEFAULT NULL,
+    tags VARCHAR(255),
+    description TEXT,
+    slug VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+);
+
+
+INSERT INTO productos (name, brand, image, price, discount, tags, description, slug)
+VALUES ('iPhone 14', 'Apple', 'https://oechsle.vteximg.com.br/arquivos/ids/16000154-1500-1500/2453753-01.jpg?v=638279385993730000', 3599.99, NULL, 'smartphone,tecnologia,celulares', 'Celular de alta gama con un almacenamiento de 128GB y 8GB de RAM.', 'iphone-14-128gb');
+
+INSERT INTO productos (name, brand, image, price, discount, tags, description, slug)
+VALUES ('Samsung Galaxy Z Fold4', 'Samsung', 'https://oechsle.vteximg.com.br/arquivos/ids/13039174-1500-1500/2239992--01.jpg?v=638071671719000000', 5499.99, 10.00, 'smartphone,tecnologia,celulares', '7.6" 12GB RAM 512GB Verde', 'samsung-galaxy-z-fold4');
+
+INSERT INTO productos (name, brand, image, price, discount, tags, description, slug)
+VALUES ('Laptop Gamer Lenovo LOQ', 'Lenovo', 'https://oechsle.vteximg.com.br/arquivos/ids/18175835-1500-1500/2597096.jpg?v=638538144047100000', 4899.99, 15.00, 'laptop,tecnologia,gamers', '15APH8 R7-7840HS GeForce RTX 4050 6GB 16GB RAM 512GB SSD 15.6" Storm Grey', 'lenovo-laptop-gamer-loq');
+
+INSERT INTO productos (name, brand, image, price, discount, tags, description, slug)
+VALUES ('Impresora HP Todo-en-Uno Smart Tank 580 Bluetooth Wi-Fi', 'HP', 'https://oechsle.vteximg.com.br/arquivos/ids/17449313-1500-1500/2315578_01.jpg?v=638505732160900000', 659.00, 5.00, 'impresoras,tecnologia', '- Tecnología de Impresión: Inyección térmica de tinta HP
+- Capacidad de hojas de papel: Hasta 100 hojas
+- Funciones: Impresión, copia , escaneado
+- Conectividad: 1 Hi-Speed USB 2.0 (dispositivo); 1 Bluetooth de bajo consumo de energía; 1 Wi-Fi 802.11b/g/n; 1 Wi-Fi Direct
+- Resolución de impresión: Hasta 1200 x 1200 ppp de reproducción
+- Tipo de soporte admitidos: Papel común, Papeles para folletos mate, Papeles para folletos con brillo, Papeles fotográficos, Sobres, Otros papeles especiales de inyección de tinta
+- Tamaños de soportes de impresión admitidos: A4; B5; A6; Sobre DL, legal
+- Formato de archivos escaneados: JPEG; PDF
+- Tipo de escaneo / tecnología: Escáner plano
+- Compatibilidad: América Latina: Botella de tinta original HP GT53 de 90 ml, negro, 1VV22AL; botella de tinta original HP GT52, cian M0H54AL; Botella de tinta original HP GT52, magenta, M0H55AL; Botella de tinta original HP GT52, amarillo, M0H56AL; Paquete de 3 botellas de tinta original HP GT52, cian/magenta/amarillo, X4E44AL. Para obtener más información sobre el llenado y rendimiento, consulte http://www.hp.com/go/learnaboutsupplies.
+- Sistemas operativos compatibles: Windows 11; Windows 10; Windows 7; Android; iOS; macOS 12 Monterey; macOS 11 Big Sur; macOS 10.15 Catalina', 'impresora-hp-todo-en-uno-smart');
+
+INSERT INTO productos (name, brand, image, price, discount, tags, description, slug)
+VALUES ('Refrigeradora Samsung Side by Side', 'Samsung', 'https://oechsle.vteximg.com.br/arquivos/ids/16290411-1500-1500/2430616.jpg?v=638308872215430000', '2199.00', NULL, 'electrohogar', 'RS52B3000M9/PE 490L Gris Metal', 'refrigeradora-samsung-side-by-side');
+
+INSERT INTO productos (name, brand, image, price, discount, tags, description, slug)
+VALUE ('Lavadora LG', 'LG', 'https://oechsle.vteximg.com.br/arquivos/ids/18083567-1500-1500/2388453.jpg?v=638525430288870000', '2599.00', '10.00', 'electrohogar', 'WT21PBV6 21Kg Negro Plateado', 'lavadora-lg');

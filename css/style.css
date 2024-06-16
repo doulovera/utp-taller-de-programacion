@@ -1,0 +1,411 @@
+* {
+  box-sizing: border-box;
+}
+
+.bg-brand {
+  background-color: #ff0705;
+}
+
+/* . */
+/* . */
+.nav-enlaces a {
+  padding: 5px 0;
+  text-align: center;
+  border: 1px solid #000000;
+  background-color: #444444;
+  color: white;
+}
+
+.nav-buscador {
+  padding: 16px 0;
+
+  & .row {
+    align-items: center;
+  }
+}
+
+.input-search {
+  width: 100%;
+  padding: 10px;
+  border: 0;
+  outline: 0;
+  border-radius: 4px;
+}
+
+.ofertas-container {
+  align-items: center;
+  padding: 10px 0 15px;
+  margin: 100px 0;
+}
+
+.ofertas-title {
+  text-transform: uppercase;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.ofertas-imagenes img {
+  aspect-ratio: 1/1;
+}
+
+.cierra-puertas {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.cierra-puertas img {
+  border-radius: 8px;
+}
+
+footer {
+  min-height: 120px;
+  padding: 40px 0;
+}
+
+footer div div {
+  text-align: center;
+  color: white;
+}
+
+footer a {
+  color: white;
+}
+
+/* nosotros.html */
+.nosotros-contenido {
+  margin: 50px auto;
+}
+
+/* servicios.html */
+.servicios-contenido {
+  position: relative;
+  margin: 50px auto;
+}
+
+.productos-contenido img,
+.servicios-contenido img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.productos-contenido .info-card,
+.servicios-contenido .info-card {
+  position: relative;
+  text-align: center;
+  margin: 60px 0;
+}
+
+.servicios-contenido .banner-cards {
+  position: relative;
+  margin-bottom: 150px;
+}
+
+.info-card-contenedor {
+  position: absolute;
+  bottom: -140px;
+  left: 0;
+  right: 0;
+}
+
+.productos-contenido .info-card span,
+.servicios-contenido .info-card span {
+  position: absolute;
+  top: -24px;
+  left: 0;
+  right: 0;
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
+  background-color: black;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 32px;
+}
+
+.productos-contenido .info-card p,
+.servicios-contenido .info-card p {
+  padding: 60px 10px 30px;
+  margin: 0 auto;
+  width: 80%;
+  height: 150px;
+  background-color: lightgray;
+  border-radius: 4px;
+}
+
+/* contacto.html */
+.contacto-contenido {
+  margin: 60px 0;
+}
+
+.contacto-contenido .formulario input,
+.contacto-contenido .formulario textarea {
+  width: 100%;
+}
+
+/* exito.html */
+
+.exito-content {
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  text-align: center;
+  height: 40vh;
+}
+
+/* productos.html */
+#carrusel-caja {
+  -moz-animation: automatizacion 15s infinite linear;
+  -o-animation: automatizacion 15s infinite linear;
+  -webkit-animation: automatizacion 15s infinite linear;
+  animation: automatizacion 15s infinite linear;
+  -webkit-transition: all 0.75s ease;
+  -moz-transition: all 0.75s ease;
+  -ms-transition: all 0.75s ease;
+  -o-transition: all 0.75s ease;
+  transition: all 0.75s ease;
+  height: 500px;
+  width: 300%;
+}
+#carrusel-contenido {
+  margin: 0 auto;
+  overflow: hidden;
+  text-align: left;
+}
+.imagenes {
+  height: 500px;
+  width: 100%;
+  object-fit: cover;
+}
+.carrusel-elemento {
+  float: left;
+  width: 33.333%;
+}
+.productos-imagenes {
+  text-align: center;
+}
+
+@-moz-keyframes automatizacion {
+  0% {
+    margin-left: 0;
+  }
+  30% {
+    margin-left: 0;
+  }
+  35% {
+    margin-left: -100%;
+  }
+  65% {
+    margin-left: -100%;
+  }
+  70% {
+    margin-left: -200%;
+  }
+  95% {
+    margin-left: -200%;
+  }
+  100% {
+    margin-left: 0;
+  }
+}
+@-webkit-keyframes automatizacion {
+  0% {
+    margin-left: 0;
+  }
+  30% {
+    margin-left: 0;
+  }
+  35% {
+    margin-left: -100%;
+  }
+  65% {
+    margin-left: -100%;
+  }
+  70% {
+    margin-left: -200%;
+  }
+  95% {
+    margin-left: -200%;
+  }
+  100% {
+    margin-left: 0;
+  }
+}
+@keyframes automatizacion {
+  0% {
+    margin-left: 0;
+  }
+  30% {
+    margin-left: 0;
+  }
+  35% {
+    margin-left: -100%;
+  }
+  65% {
+    margin-left: -100%;
+  }
+  70% {
+    margin-left: -200%;
+  }
+  95% {
+    margin-left: -200%;
+  }
+  100% {
+    margin-left: 0;
+  }
+}
+
+/* productosPT2.html */
+body {
+  margin: 0px;
+  background-color: aliceblue;
+  font-family: "Nerko One", cursive;
+}
+
+button {
+  font-size: 16px;
+  text-align: center;
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+
+.productos-imagenes {
+  width: 100%;
+
+  & .img-3 {
+    object-position: left;
+    object-fit: cover;
+    min-height: 300px;
+    width: 100%;
+  }
+}
+
+.page-nav {
+  background-color: #2196f3;
+  border: 1px solid black;
+  position: relative;
+}
+
+.page-nav h1 {
+  margin: 20px;
+}
+
+.button-checkout {
+  background-color: white;
+  color: black;
+  border: 2px solid #008cba; /* Blue */
+  transition-duration: 0.4s;
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+}
+
+.button-checkout:hover {
+  background-color: #008cba; /* Blue */
+  color: white;
+}
+
+.page-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.button-add {
+  background-color: white;
+  color: black;
+  border: 2px solid #4caf50; /* Green */
+  transition-duration: 0.4s;
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+}
+
+.button-add:hover {
+  background-color: #4caf50; /* Green */
+  color: white;
+}
+
+/**Mobile**/
+@media (max-width: 576px) {
+  .nav-buscador img {
+    width: 50px;
+  }
+}
+
+.carrito-contenedor {
+  position: relative;
+
+  & .carrito-cantidad {
+    position: absolute;
+    bottom: -15px;
+    left: -10px;
+    color: white;
+    border-radius: 4px;
+    border: 1px solid black;
+    padding: 2px;
+    font-size: 10px;
+  }
+}
+
+/* PRODUCTOS */
+.product-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 300px;
+  margin: 15px;
+  padding: 2px 16px 16px;
+  position: relative;
+  box-shadow: 0px 0px 3px 0 rgba(0, 0, 0, 0.1);
+  background-color: white;
+
+  img {
+    width: 300px;
+  }
+
+  small {
+    display: block;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+
+    a {
+      color: black;
+      text-decoration: none;
+    }
+  }
+
+  .precios {
+    margin: 30px 0 15px;
+
+    div {
+      display: flex;
+      justify-content: space-between;
+      margin: 0;
+
+      &:last-child {
+        font-weight: 700;
+      }
+
+      p {
+        margin: 0 0 6px;
+        padding: 0;
+      }
+    }
+  }
+
+  .btn-agregar {
+    display: block;
+    width: 100%;
+    background-color: #fff;
+    color: #000;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+}
