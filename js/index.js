@@ -1,5 +1,9 @@
+import sesionUsuario from "./sesion.js";
+
 let products = [];
 let total = 0;
+
+sesionUsuario()
 
 function add(product, price) {
     console.log(product, price);

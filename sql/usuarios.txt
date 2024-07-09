@@ -1,0 +1,33 @@
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    avatar VARCHAR(255),
+    productos JSON,
+    password VARCHAR(255) NOT NULL,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO usuarios (nombre, email, avatar, productos, password) VALUES (
+    'Juan Pérez',
+    'juan.perez@example.com',
+    'https://unavatar.io/x/therock',
+    '[1, 2, 3]',
+    '1234'
+);
+
+INSERT INTO usuarios (nombre, email, avatar, productos, password) VALUES (
+    'Will Smith',
+    'will.smith@example.com',
+    'https://unavatar.io/x/WillSmith2real',
+    '[4]',
+    '1234'
+);
+
+INSERT INTO usuarios (nombre, email, avatar, productos, password) VALUES (
+    'Taylor Swift',
+    'taylor.swift@example.com',
+    'https://unavatar.io/x/taylorswift13',
+    '[5, 6]',
+    '1234'
+);

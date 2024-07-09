@@ -6,6 +6,31 @@
   background-color: #ff0705;
 }
 
+.text-brand {
+  color: #ff0705;
+}
+
+#nombre-usuario {
+  font-size: 16px;
+  color: #000;
+}
+
+#nombre-usuario.loggedin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  margin: auto;
+  font-weight: bold;
+
+  .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+}
+
 /* . */
 /* . */
 .nav-enlaces a {

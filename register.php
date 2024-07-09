@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Oechsle.pe - ¡Las mejores ofertas en miles de productos!</title>
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
     <script src="js/index.js" defer type="module"></script>
   </head>
   <body>
@@ -62,101 +65,38 @@
       </div>
     </header>
     <!--   cabecera   -->
-    
-    
-    <div class="contacto-contenido container">
-      
-      <div class="row">
-        
-        <div class="col-12 col-md-6">
-          <h4>
-            Contáctanos
-          </h4>
-          
-          <div class="contactanos-seccion">
-            <p>
-              Chatea con nosotros
-            </p>
-            <p>
-              Te atendemos las 24 horas
-            </p>
-          </div>
-          
-          <div class="contactanos-seccion">
-            <p>
-              Escríbenos
-            </p>
-            <p>
-              Estamos para ayudarte. <a href="mailto:sac-online@oechsle.com">sac-online@oechsle.com</a>
-            </p>
-          </div>
-          
-          <div class="contactanos-seccion">
-            <p>
-              Llámanos al (01)619-4801
-            </p>
-            <p>
-              De lunes a domingo de 8:00 am a 8:00 pm
-            </p>
-          </div>
-          
-          <div class="contactanos-seccion">
-            <p>
-              Visítanos
-            </p>
-            <p>
-              Revisa aquí nuestros horarios y tiendas disponibles a nivel nacional <br/>
-              <a href="/oechsle-web/servicios.html">Ver tiendas</a>
-            </p>
-          </div>
-        </div>
-        
-        <div class="formulario col-12 col-md-6">
-          <h3>
-            Formulario de contacto
-          </h3>
-          
-          <form action="contacto.php" method="post">
-            <p>
-              <label>
-                Nombres y Apellidos
-                <input type="text" name="nombres" required>
-              </label>
-            </p>
 
-            <p>
-              <label>
-                Correo electrónico
-                <input type="email" name="email" required>
-              </label>
-            </p>
-
-            <p>
-              <label>
-                Teléfono
-                <input type="text" name="telefono" required>
-              </label>
-            </p>
-
-            <p>
-              <label>
-                Mensaje
-                <textarea name="mensaje" required></textarea>
-              </label>
-            </p>
-
-            <div class="d-grid gap-2 d-md-block">
-              <button type="submit" class="btn btn-primary">Enviar</button>
-              <button type="reset" class="btn btn-outline-secondary">Borrar</button>
+    <!-- formulario -->
+    <div class="container">
+      <div id="login-row" class="row justify-content-center align-items-center" style="margin:50px 0; padding: 50px 0; background-color:#f3f3f3;">
+          <div id="login-column" class="col-md-6">
+            <div id="login-box" class="col-md-12">
+              <form id="login-form" class="form" action="" method="post">
+                <h3 class="text-center text-brand">Regístrate</h3>
+                <div class="form-group">
+                  <label for="username">Email:</label><br>
+                  <input type="text" name="username" id="username" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="password">Contraseña:</label><br>
+                  <input type="text" name="password" id="password" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="password">Confirmar contraseña:</label><br>
+                  <input type="text" name="password" id="password" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="submit" name="submit" class="btn btn-md" value="Enviar" style="background-color:#ff0705; margin-top:10px;">
+                </div>
+                <div id="register-link" class="text-right">
+                  <a href="/oechsle-web/login.php">Inicia sesión</a>
+                </div>
+              </form>
             </div>
-          </form>
-
-        </div>
-        
+          </div>
       </div>
-      
-    </div>
-    
+  </div>
+    <!-- formulario -->
     
     <!-- footer -->
     <footer class="bg-brand">
@@ -256,5 +196,6 @@
       </div>
     </footer>
     <!-- footer -->
+    
   </body>
 </html>

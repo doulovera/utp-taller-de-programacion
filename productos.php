@@ -1,13 +1,3 @@
-<?php
-  // Archivo que obtiene los productos
-  $products = include 'modules/fetch_products.php';
-
-  // función para calcular el descuento
-  function calculateDiscount($price, $discount) {
-    return $price - ($price * $discount / 100);
-  }  
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,8 +10,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
     />
     <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
-    <script src="js/index.js" defer></script>
-    <script src="js/index.js" defer></script>
+    <script src="js/index.js" defer type="module"></script>
   </head>
   <body>
     <!--   cabecera   -->
@@ -55,7 +44,11 @@
             </div>
 
             <div class="col-2 col-md-1">
-              <p>Iniciar sesión</p>
+              <p>
+                <a id="nombre-usuario" href="/oechsle-web/login.php">
+                  Iniciar sesión
+                </a>
+              </p>
             </div>
 
             <div class="col-1 col-md-1">
@@ -141,49 +134,7 @@
     
     <!--   productos    -->
     <div class="page-content container">
-    <?php foreach ($products as $product) { ?>
-      <div class="product-container">
-        <img src="<?= $product['image']; ?>" alt="<?= $product['name']; ?>">
-
-        <small>
-          <?= $product['brand']; ?>
-        </small>
-
-        <h3>
-          <?= $product['name']; ?>
-        </h3>
-
-        <div class="precios">
-          <div>
-            <p>
-              Precio de lista
-            </p>
-            <p class="precio">
-              <?= $product['price']; ?>
-            </p>
-          </div>
-          
-          <?php if ($product['discount'] > 0) { ?>
-            <div>
-              <p>
-                Descuento
-              </p>
-              <p class="precio">
-                <?= calculateDiscount($product['price'], $product['discount']); ?>
-              </p>
-            </div>
-          <?php } else { ?>
-            <div>
-              <p>&nbsp;</p>
-            </div>
-          <?php } ?>
-        </div>
-
-        <button class="btn-agregar" onclick="add('<?php echo htmlspecialchars($product['id']); ?>', <?php echo htmlspecialchars($product['price']); ?>)">
-          Agregar
-        </button>
-      </div>
-    <?php } ?>
+      <?php include 'php/views/listaDeProductos.php'; ?>
     </div>
     <!--   productos    -->
 
