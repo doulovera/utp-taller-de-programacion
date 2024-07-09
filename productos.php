@@ -30,7 +30,7 @@
         <div class="row">
           <a href="/oechsle-web/index.html" class="col"> Inicio </a>
           <a href="/oechsle-web/nosotros.html" class="col"> Nosotros </a>
-          <a href="/oechsle-web/productos.html" class="col"> Productos </a>
+          <a href="/oechsle-web/productos.php" class="col"> Productos </a>
           <a href="/oechsle-web/servicios.html" class="col"> Servicios </a>
           <a href="/oechsle-web/contacto.html" class="col"> Contáctanos </a>
         </div>
@@ -143,18 +143,14 @@
     <div class="page-content container">
     <?php foreach ($products as $product) { ?>
       <div class="product-container">
-        <a href="<?= $product['slug'] ?>">
-          <img src="<?= $product['image']; ?>" alt="<?= $product['name']; ?>">
-        </a>
+        <img src="<?= $product['image']; ?>" alt="<?= $product['name']; ?>">
 
         <small>
           <?= $product['brand']; ?>
         </small>
 
         <h3>
-          <a href="<?= $product['slug'] ?>">
-            <?= $product['name']; ?>
-          </a>
+          <?= $product['name']; ?>
         </h3>
 
         <div class="precios">
