@@ -5,16 +5,31 @@ let total = 0;
 
 sesionUsuario()
 
-function add(product, price) {
-    console.log(product, price);
-    products.push(product);
-    total = total + price;
-    document.getElementById("checkout").innerHTML = `S/.${total}`
-
-    // agregar al almacenamiento local
-    // para que no se pierda al recargar la página
-    localStorage.setItem("precios_productos", total);
+function add(id) {
+    fetch('/php/controllers/agregarProductoAUsuario.php', { // Adjust the path as necessary
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `id=${id}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        // Handle response
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
+
+const agregatBtns = document.querySelectorAll(".agregar");
+agregatBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        const id = btn.getAttribute("id");
+        add(id);
+    });
+});
 
 function pay() {
     window.alert(products.join(", \n"));

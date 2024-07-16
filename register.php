@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+if (isset($_SESSION['error'])) {
+  $errorMessage = $_SESSION['error'];
+  unset($_SESSION['error']);
+} else {
+  $errorMessage = '';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -71,20 +82,29 @@
       <div id="login-row" class="row justify-content-center align-items-center" style="margin:50px 0; padding: 50px 0; background-color:#f3f3f3;">
           <div id="login-column" class="col-md-6">
             <div id="login-box" class="col-md-12">
-              <form id="login-form" class="form" action="" method="post">
+              <form id="login-form" class="form" action="php/views/registro.php" method="post">
                 <h3 class="text-center text-brand">Regístrate</h3>
                 <div class="form-group">
-                  <label for="username">Email:</label><br>
-                  <input type="text" name="username" id="username" class="form-control">
+                  <label for="email">Email:</label><br>
+                  <input type="text" name="email" id="email" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="nombre">Nombre:</label><br>
+                  <input type="text" name="nombre" id="nombre" class="form-control">
                 </div>
                 <div class="form-group">
                   <label for="password">Contraseña:</label><br>
                   <input type="text" name="password" id="password" class="form-control">
                 </div>
                 <div class="form-group">
-                  <label for="password">Confirmar contraseña:</label><br>
-                  <input type="text" name="password" id="password" class="form-control">
+                  <label for="confirmPassword">Confirmar contraseña:</label><br>
+                  <input type="text" name="confirmPassword" id="confirmPassword" class="form-control">
                 </div>
+                <?php if (!empty($errorMessage)): ?>
+                    <div class="error-message" style="color: red;">
+                      <small><?php echo $errorMessage; ?></small>
+                    </div>
+                <?php endif; ?>
                 <div class="form-group">
                   <input type="submit" name="submit" class="btn btn-md" value="Enviar" style="background-color:#ff0705; margin-top:10px;">
                 </div>

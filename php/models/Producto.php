@@ -15,7 +15,6 @@ class Producto {
             }
         }
 
-        $conn->close();
         return $products;
     }
 
@@ -30,7 +29,6 @@ class Producto {
             $product = $result->fetch_assoc();
         }
 
-        $conn->close();
         return $product;
     }
 }

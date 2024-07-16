@@ -1,6 +1,7 @@
 <?php
 // Archivo que obtiene los productos
 require_once __DIR__ . '/../controllers/productos.php';
+require_once __DIR__ . '/../controllers/usuarios.php';
 
 // función para calcular el descuento
 function calculateDiscount($price, $discount) {
@@ -48,7 +49,7 @@ foreach ($productosController->listarProductos() as $product) {
       <?php } ?>
     </div>
 
-    <button class="btn-agregar" onclick="add('<?php echo htmlspecialchars($product['id']); ?>', <?php echo htmlspecialchars($product['price']); ?>)">
+    <button class="btn-agregar" id="<?php echo htmlspecialchars($product['id']); ?>">
       Agregar
     </button>
   </div>

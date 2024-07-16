@@ -13,6 +13,7 @@ if (!isset($_SESSION['loggedin'])) {
   <head>
     <script>
       const usuario = {
+        id: '<?php echo $_SESSION['id']; ?>',
         email: '<?php echo $_SESSION['email']; ?>',
         nombre: '<?php echo $_SESSION['nombre']; ?>',
         avatar: '<?php echo $_SESSION['avatar']; ?>',

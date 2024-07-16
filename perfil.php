@@ -1,12 +1,22 @@
 <?php
 session_start();
+require_once 'php/controllers/usuarios.php';
 
-if (isset($_SESSION['error'])) {
-  $errorMessage = $_SESSION['error'];
-  unset($_SESSION['error']);
-} else {
-  $errorMessage = '';
+$userId = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+
+if ($userId === null) {
+  header('Location: /oechsle-web/login.php');
+  exit;
 }
+
+$usuariosController = new UsuariosController();
+$productosDelUsuario = $usuariosController->obtenerProductosPorUsuario($userId);
+$usuario = $usuariosController->obtenerUsuarioPorId($userId);
+
+function calculateDiscount($price, $discount) {
+  return $price - ($price * $discount / 100);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -77,38 +87,74 @@ if (isset($_SESSION['error'])) {
     </header>
     <!--   cabecera   -->
 
-    <!-- formulario -->
-    <div class="container">
-      <div id="login-row" class="row justify-content-center align-items-center" style="margin:50px 0; padding: 50px 0; background-color:#f3f3f3;">
-          <div id="login-column" class="col-md-6">
-            <div id="login-box" class="col-md-12">
-              <form id="login-form" class="form" action="php/views/inicioSesion.php" method="post">
-                <h3 class="text-center text-brand">Iniciar sesión</h3>
-                <div class="form-group">
-                  <label for="email">Email:</label><br>
-                  <input type="text" name="email" id="email" class="form-control">
+    <!-- usuario -->
+    <div class="container" style="margin-top:50px;">
+      <h1>
+        <?= $usuario['nombre']; ?>
+      </h1>
+
+      <h2>
+        <?= $usuario['email']; ?>
+      </h2>
+
+      <button class="btn btn-danger" id="cerrarSesion">
+        Cerrar sesión
+      </button>
+    </div>
+    <!-- usuario -->
+
+    <!-- productos -->
+    <div class="container" style="margin-top:100px;">
+      <h3>
+        Productos
+      </h3>
+      
+      <div class="page-content container">
+        <?php
+        foreach ($productosDelUsuario as $product) {
+        ?>
+          <div class="product-container">
+            <img src="<?= $product['image']; ?>" alt="<?= $product['name']; ?>" />
+
+            <small>
+              <?= $product['brand']; ?>
+            </small>
+
+            <h3>
+              <?= $product['name']; ?>
+            </h3>
+
+            <div class="precios">
+              <div>
+                <p>
+                  Precio de lista
+                </p>
+                <p class="precio">
+                  <?= $product['price']; ?>
+                </p>
+              </div>
+              
+              <?php if ($product['discount'] > 0) { ?>
+                <div>
+                  <p>
+                    Descuento
+                  </p>
+                  <p class="precio">
+                    <?= calculateDiscount($product['price'], $product['discount']); ?>
+                  </p>
                 </div>
-                <div class="form-group">
-                  <label for="password">Contraseña:</label><br>
-                  <input type="password" name="password" id="password" class="form-control">
+              <?php } else { ?>
+                <div>
+                  <p>&nbsp;</p>
                 </div>
-                <?php if (!empty($errorMessage)): ?>
-                    <div class="error-message" style="color: red;">
-                      <small><?php echo $errorMessage; ?></small>
-                    </div>
-                <?php endif; ?>
-                <div class="form-group">
-                  <input type="submit" name="submit" class="btn btn-md" value="Enviar" style="background-color:#ff0705; margin-top:10px;">
-                </div>
-                <div id="register-link" class="text-right">
-                  <a href="/oechsle-web/register.php">Regístrate</a>
-                </div>
-              </form>
+              <?php } ?>
             </div>
           </div>
+        <?php }
+        ?>
       </div>
-  </div>
-    <!-- formulario -->
+    </div>
+    <!-- productos -->
     
     <!-- footer -->
     <footer class="bg-brand">
@@ -209,5 +255,14 @@ if (isset($_SESSION['error'])) {
     </footer>
     <!-- footer -->
     
+    <script>
+      const $cierreSesion = document.getElementById('cerrarSesion');
+
+      $cierreSesion.addEventListener('click', () => {
+        localStorage.removeItem('usuario');
+        fetch('/oechsle-web/php/views/cierreSesion.php', { method: 'POST' })
+          .then(() => window.location.href = '/oechsle-web/index.html');
+      });
+    </script>
   </body>
 </html>
