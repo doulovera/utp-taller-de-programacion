@@ -18,6 +18,18 @@ class ProductosController {
   public function obtenerProducto($id) {
     return $this->producto->obtenerProducto($id);
   }
+
+  public function agregarProducto($nombre, $precio, $descripcion, $brand, $discount, $image, $tags) {
+    return $this->producto->agregarProducto($nombre, $precio, $descripcion, $brand, $discount, $image, $tags);
+  }
+
+  public function actualizarProducto($id, $nombre, $precio, $descripcion, $brand, $discount, $image, $tags) {
+    return $this->producto->actualizarProducto($id, $nombre, $precio, $descripcion, $brand, $discount, $image, $tags);
+  }
+
+  public function eliminarProducto($id) {
+    return $this->producto->eliminarProducto($id);
+  }
 }
 
 ?>

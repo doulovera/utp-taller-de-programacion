@@ -1,7 +1,6 @@
 import sesionUsuario from "./sesion.js";
 
 let products = [];
-let total = 0;
 
 sesionUsuario()
 
@@ -34,15 +33,6 @@ agregatBtns.forEach((btn) => {
 function pay() {
     window.alert(products.join(", \n"));
 }
-
-// retrieve the products from local storage
-// and display them in the checkout
-let storedProducts = localStorage.getItem("precios_productos");
-if (storedProducts) {
-    const total = parseInt(storedProducts) || 0;
-    document.getElementById("checkout").innerHTML = `S/.${total}`;
-}
-
 
 /* Formatear el precio */
 function formatPrice(price) {

@@ -5,7 +5,8 @@ CREATE TABLE usuarios (
     avatar VARCHAR(255),
     productos JSON,
     password VARCHAR(255) NOT NULL,
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    role VARCHAT(255)
 );
 
 INSERT INTO usuarios (nombre, email, avatar, productos, password) VALUES (

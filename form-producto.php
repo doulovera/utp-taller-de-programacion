@@ -1,22 +1,28 @@
 <?php
 session_start();
-require_once 'php/controllers/usuarios.php';
+require_once 'php/controllers/productos.php';
 
-$userId = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+$productosController = new ProductosController();
+$product = null;
 
-if ($userId === null) {
-  header('Location: /oechsle-web/login.php');
-  exit;
+if (isset($_SESSION['error'])) {
+  $errorMessage = $_SESSION['error'];
+  unset($_SESSION['error']);
+} else {
+  $errorMessage = '';
 }
 
-$usuariosController = new UsuariosController();
-$productosDelUsuario = $usuariosController->obtenerProductosPorUsuario($userId);
-$usuario = $usuariosController->obtenerUsuarioPorId($userId);
+$formActionUrl = 'php/views/agregarProductosDB.php';
 
-function calculateDiscount($price, $discount) {
-  return $price - ($price * $discount / 100);
+$isUpdate = false;
+
+if (isset($_GET['id'])) {
+  $isUpdate = true;
+  $formActionUrl = 'php/views/actualizarProductosDB.php';
+
+  $id = $_GET['id'];
+  $product = $productosController->obtenerProducto($id);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -87,78 +93,58 @@ function calculateDiscount($price, $discount) {
     </header>
     <!--   cabecera   -->
 
-    <!-- usuario -->
-    <div class="container" style="margin-top:50px;">
-      <h1>
-        <?= $usuario['nombre']; ?>
-      </h1>
-
-      <h2>
-        <?= $usuario['email']; ?>
-      </h2>
-
-      <button class="btn btn-danger" id="cerrarSesion">
-        Cerrar sesión
-      </button>
-    </div>
-    <!-- usuario -->
-
-    <!-- productos -->
-    <div class="container" style="margin-top:100px;">
-      <h3>
-        Productos
-      </h3>
-      
-      <div class="page-content container">
-        <?php
-        foreach ($productosDelUsuario as $product) {
-        ?>
-          <div class="product-container">
-            <img src="<?= $product['image']; ?>" alt="<?= $product['name']; ?>" />
-
-            <small>
-              <?= $product['brand']; ?>
-            </small>
-
-            <h3>
-              <?= $product['name']; ?>
-            </h3>
-
-            <div class="precios">
-              <div>
-                <p>
-                  Precio de lista
-                </p>
-                <p class="precio">
-                  <?= $product['price']; ?>
-                </p>
-              </div>
-              
-              <?php if ($product['discount'] > 0) { ?>
-                <div>
-                  <p>
-                    Con descuento
-                  </p>
-                  <p class="precio">
-                    <?= calculateDiscount($product['price'], $product['discount']); ?>
-                  </p>
+    <!-- formulario -->
+    <div class="container">
+      <div id="login-row" class="row justify-content-center align-items-center" style="margin:50px 0; padding: 50px 0; background-color:#f3f3f3;">
+          <div id="login-column" class="col-md-6">
+            <div id="login-box" class="col-md-12">
+              <form id="login-form" class="form" action="<?= $formActionUrl ?>" method="post">
+                <h3 class="text-center text-brand">Producto</h3>
+                <input type="hidden" name="id" value="<?= $product ? $product['id'] : '' ?>" hidden>
+                <div class="form-group">
+                  <label for="nombre">Nombre</label><br>
+                  <input type="text" name="nombre" id="nombre" class="form-control" required value="<?= $product ? $product['name'] : '' ?>">
                 </div>
-              <?php } else { ?>
-                <div>
-                  <p>&nbsp;</p>
+                <div class="form-group">
+                  <label for="precio">Precio</label><br>
+                  <input type="number" name="precio" id="precio" class="form-control" required value="<?= $product ? $product['price'] : '' ?>">
                 </div>
-              <?php } ?>
+                <div class="form-group">
+                  <label for="descripcion">Descripción</label><br>
+                  <input type="text" name="descripcion" id="descripcion" class="form-control" required value="<?= $product ? $product['description'] : '' ?>">
+                </div>
+                <div class="form-group">
+                  <label for="marca">Marca</label><br>
+                  <input type="text" name="marca" id="marca" class="form-control" required value="<?= $product ? $product['brand'] : '' ?>">
+                </div>
+                <div class="form-group">
+                  <label for="descuento">Descuento</label><br>
+                  <input type="number" name="descuento" id="descuento" class="form-control" value="<?= $product ? $product['discount'] : '0' ?>">
+                </div>
+                <div class="form-group">
+                  <label for="imagen">Imagen</label><br>
+                  <input type="text" name="imagen" id="imagen" class="form-control" required value="<?= $product ? $product['image'] : '' ?>">
+                </div>
+                <div class="form-group">
+                  <label for="tags">Tags</label><br>
+                  <input type="text" name="tags" id="tags" class="form-control" required value="<?= $product ? $product['tags'] : '' ?>">
+                </div>
+                
+                
+                <?php if (!empty($errorMessage)): ?>
+                    <div class="error-message" style="color: red;">
+                      <small><?php echo $errorMessage; ?></small>
+                    </div>
+                <?php endif; ?>
+                <div class="form-group">
+                  <input type="submit" name="submit" class="btn btn-md" value="Guardar" style="background-color:#ff0705; margin-top:10px;">
+                </div>
+              </form>
             </div>
-
-            <button class="btn-eliminar" id="<?php echo htmlspecialchars($product['id']); ?>">
-              Eliminar producto
-            </button>
           </div>
-        <?php }
-        ?>
       </div>
-    </div>
-    <!-- productos -->
+  </div>
+    <!-- formulario -->
     
     <!-- footer -->
     <footer class="bg-brand">
@@ -259,48 +245,5 @@ function calculateDiscount($price, $discount) {
     </footer>
     <!-- footer -->
     
-    <script>
-      const $cierreSesion = document.getElementById('cerrarSesion');
-
-      $cierreSesion.addEventListener('click', () => {
-        localStorage.removeItem('usuario');
-        fetch('/oechsle-web/php/views/cierreSesion.php', { method: 'POST' })
-          .then(() => window.location.href = '/oechsle-web/index.html');
-      });
-
-      const $eliminarProducto = document.querySelectorAll('.btn-eliminar');
-
-      $eliminarProducto.forEach((btn) => {
-        btn.addEventListener('click', async () => {
-          const productId = btn.id;
-          const usuario = localStorage.getItem('usuario');
-
-          if (!usuario) {
-            alert('Debes iniciar sesión para eliminar productos');
-            return;
-          }
-
-          const { id: userId } = JSON.parse(usuario);
-
-          const response = await fetch('/oechsle-web/php/views/eliminarProductoAUsuario.php', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: `productId=${Number(productId)}&userId=${userId}`,
-          });
-
-          const data = await response.json();
-
-          if (data.success) {
-            alert('Producto eliminado');
-            window.location.reload();
-          } else {
-            alert('Hubo un error al eliminar el producto:\n' + data.message);
-          }
-        });
-      });
-    
-    </script>
   </body>
 </html>

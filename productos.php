@@ -133,7 +133,9 @@
     <!--   categorias   -->
     
     <!--   productos    -->
+    <div class="container" style="text-align:center;" id="container-agregar-productos"></div>
     <div class="page-content container">
+
       <?php include 'php/views/listaDeProductos.php'; ?>
     </div>
     <!--   productos    -->

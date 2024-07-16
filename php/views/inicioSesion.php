@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['nombre'] = $user['nombre'];
             $_SESSION['avatar'] = $user['avatar'];
             $_SESSION['productos'] = $user['productos'];
+            $_SESSION['role'] = $user['role'];
             header('Location: /oechsle-web/php/views/exito.php');
             exit;
         } else {

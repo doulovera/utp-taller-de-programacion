@@ -424,7 +424,10 @@ button {
     }
   }
 
-  .btn-agregar {
+  .btn-actions,
+  .btn-agregar,
+  .btn-eliminar
+  {
     display: block;
     width: 100%;
     background-color: #fff;
@@ -432,17 +435,33 @@ button {
     font-weight: 700;
     font-size: 1rem;
     text-transform: uppercase;
+    border-radius: 4px;
   }
 
   .btn-eliminar {
-    display: block;
-    width: 100%;
-    background-color: #fff;
-    font-weight: 700;
-    font-size: 1rem;
-    text-transform: uppercase;
     color: #ff0705;
     border: 2px solid #ff0705;
+  }
+
+  .admin-only {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+
+    a {
+      border: 2px solid #000;
+      text-decoration: none;
+      font-size: 16px;
+      text-align: center;
+      padding: 10px 20px;
+    }
+
+    a, button {
+      border-color: #008cba;
+    }
   }
   
 }

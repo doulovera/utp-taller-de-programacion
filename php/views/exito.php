@@ -17,6 +17,7 @@ if (!isset($_SESSION['loggedin'])) {
         email: '<?php echo $_SESSION['email']; ?>',
         nombre: '<?php echo $_SESSION['nombre']; ?>',
         avatar: '<?php echo $_SESSION['avatar']; ?>',
+        isAdmin: '<?php echo $_SESSION['role'] === 'admin'; ?>' === '1',
         productos: JSON.parse('<?php echo $_SESSION['productos']; ?>' || '[]'),
       }
 

@@ -12,6 +12,21 @@ function checkQueryType() {
         message = 'El correo fue enviado correctamente.'
     }
 
+    if (type === 'agregar-producto-exito') {
+        title = '¡Producto agregado! 📦'
+        message = 'El producto fue agregado correctamente.'
+    }
+
+    if (type === 'agregar-producto-error') {
+        title = '¡Error al agregar producto! 📦'
+        message = 'Hubo un error al agregar el producto.'
+    }
+
+    if (type === 'editar-producto-exito') {
+        title = '¡Producto editado! 📦'
+        message = 'El producto fue editado correctamente.'
+    }
+
     const $title = document.getElementById('mensaje-title');
     const $message = document.getElementById('mensaje-description');
 
