@@ -52,7 +52,42 @@ foreach ($productosController->listarProductos() as $product) {
     <button class="btn-agregar" id="<?php echo htmlspecialchars($product['id']); ?>">
       Agregar
     </button>
+
   </div>
   <?php
 }
 ?>
+
+<script>
+  const $agregarProducto = document.querySelectorAll('.btn-agregar');
+
+  $agregarProducto.forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const productId = btn.id;
+      const usuario = localStorage.getItem('usuario');
+
+      if (!usuario) {
+        alert('Debes iniciar sesión para agregar productos');
+        return;
+      }
+
+      const { id: userId } = JSON.parse(usuario);
+
+      const response = await fetch('/oechsle-web/php/views/agregarProductoAUsuario.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `productId=${Number(productId)}&userId=${userId}`,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert('Producto agregado correctamente');
+      } else {
+        alert('Ocurrió un error al agregar el producto');
+      }
+    });
+  });
+</script>

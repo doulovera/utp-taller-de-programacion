@@ -26,4 +26,8 @@ class UsuariosController {
 	public function agregarProductosAUsuario($idUsuario, $idProducto) {
 		return $this->usuarioModel->agregarProductosAUsuario($idUsuario, $idProducto);
 	}
+
+	public function eliminarProductoDeUsuario($idUsuario, $idProducto) {
+		return $this->usuarioModel->eliminarProductoAUsuario($idUsuario, $idProducto);
+	}
 }

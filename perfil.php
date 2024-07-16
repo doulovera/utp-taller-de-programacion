@@ -149,6 +149,10 @@ function calculateDiscount($price, $discount) {
                 </div>
               <?php } ?>
             </div>
+
+            <button class="btn-eliminar" id="<?php echo htmlspecialchars($product['id']); ?>">
+              Eliminar producto
+            </button>
           </div>
         <?php }
         ?>
@@ -263,6 +267,40 @@ function calculateDiscount($price, $discount) {
         fetch('/oechsle-web/php/views/cierreSesion.php', { method: 'POST' })
           .then(() => window.location.href = '/oechsle-web/index.html');
       });
+
+      const $eliminarProducto = document.querySelectorAll('.btn-eliminar');
+
+      $eliminarProducto.forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const productId = btn.id;
+          const usuario = localStorage.getItem('usuario');
+
+          if (!usuario) {
+            alert('Debes iniciar sesión para eliminar productos');
+            return;
+          }
+
+          const { id: userId } = JSON.parse(usuario);
+
+          const response = await fetch('/oechsle-web/php/views/eliminarProductoAUsuario.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `productId=${Number(productId)}&userId=${userId}`,
+          });
+
+          const data = await response.json();
+
+          if (data.success) {
+            alert('Producto eliminado');
+            window.location.reload();
+          } else {
+            alert('Hubo un error al eliminar el producto:\n' + data.message);
+          }
+        });
+      });
+    
     </script>
   </body>
 </html>

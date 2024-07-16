@@ -96,5 +96,47 @@ class Usuario {
         
         return $result;
     }
+
+    public function eliminarProductoAUsuario($idUsuario, $idProducto) {
+        global $conn;
+        
+        $sqlSelect = "SELECT productos FROM usuarios WHERE id = ?";
+        $stmtSelect = $conn->prepare($sqlSelect);
+        if (!$stmtSelect) {
+            return false;
+        }
+        $stmtSelect->bind_param("i", $idUsuario);
+        $stmtSelect->execute();
+        $stmtSelect->bind_result($productosJson);
+        $stmtSelect->fetch();
+        $stmtSelect->close();
+        
+        $productos = json_decode($productosJson, true);
+        if (!is_array($productos)) {
+            $productos = [];
+        }
+        
+        $productos = array_filter($productos, function($productoId) use ($idProducto) {
+            return $productoId != $idProducto;
+        });
+
+        $productos = array_values($productos);
+
+        $productosJsonActualizado = json_encode($productos);
+        
+        $sqlUpdate = "UPDATE usuarios SET productos = ? WHERE id = ?";
+        $stmtUpdate = $conn->prepare($sqlUpdate);
+        if (!$stmtUpdate) {
+            return false;
+        }
+        
+        $stmtUpdate->bind_param("si", $productosJsonActualizado, $idUsuario);
+        $result = $stmtUpdate->execute();
+        
+        $stmtUpdate->close();
+        
+        return $result;
+    }
+
 }
 ?>
